@@ -1,0 +1,38 @@
+[project]
+name = "wikipedia-agent"
+version = "0.1.0"
+description = "A Wikipedia research CLI with verified page retrieval, powered by OpenRouter"
+authors = [
+    { name = "Micah Johnson", email = "micah@firstbuild.dev" }
+]
+requires-python = ">=3.12"
+dependencies = [
+    "httpx>=0.28.1",
+    "pydantic-ai-slim[openrouter]>=2.55.0",
+    "python-dotenv>=1.2.4",
+]
+
+[project.scripts]
+wikipedia-agent = "wikipedia_agent.cli:main"
+
+[build-system]
+requires = ["uv_build>=0.12.5,<0.13.0"]
+build-backend = "uv_build"
+
+[tool.pytest.ini_options]
+asyncio_mode = "auto"
+testpaths = ["tests"]
+
+[tool.ruff]
+target-version = "py312"
+line-length = 100
+
+[tool.ruff.lint]
+select = ["E", "F", "I", "UP", "B"]
+
+[dependency-groups]
+dev = [
+    "pytest>=9.1.1",
+    "pytest-asyncio>=1.4.0",
+    "ruff>=0.17.0",
+]
